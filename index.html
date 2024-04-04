@@ -10,14 +10,21 @@
 
         <h2>사용할 아이디</h2>
         <p>아이디 생성 규칙 : 본인 이름(성 제외) 영어로, 모두 소문자, 동명이인의 경우 임의 식별자 붙일 것</p>
+        <p>예 : 김대훈 -> daehun</p>
         <input type="text" name="id">
         <br>
 
         <h2>비밀번호</h2>
+        <p>아이디 생성 규칙 : 8글자 이상, 아이디 미포함</p>
         <input type="text" name="pw">
         <br>
 
         <input type="submit" text="제출">
+
+        <p style="color:red">다시 이 화면으로 돌아오면 다음 중 하나</p>
+        <li style="color:red">제공된 패스워드 미일치</li>
+        <li style="color:red">이미 있는 계정</li>
+        <li style="color:red">비밀번호 양식 안지침</li>
     </form>
 </body>
 </html>

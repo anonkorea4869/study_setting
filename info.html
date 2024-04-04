@@ -8,9 +8,9 @@
         <li>vscode 좌측 extension 클릭</li>
         <li>ssh 검색</li>
         <li>Remote - SSH 설치</li>
-        <li>윈도우 : , 맥북 : fn + 1</li>
+        <li>검색창 열기 => 윈도우 : <b>f1 혹은 ctrl + shift + p</b>, 맥북 : <b>fn + f1</b></li>
         <li>나오는 검색창에 'Remote-SSH: Open SSH Configuration File...' 클릭</li>
-        <li>''.ssh/config'로 끝나는거 클릭</li>
+        <li>'.ssh/config'로 끝나는거 클릭</li>
         <li>아래 파란글씨 복붙 후 저장</li>
         <pre style="color:blue">
         Host zeropointer
@@ -21,5 +21,36 @@
         <li>4번 실행 후 'Remote-SSH: connect to Host' 클릭</li>
         <li>zeropointer 클릭</li>
         <li>기다리기</li>
+        <li>비밀번호 입력</li>
+        <li>좌측 첫번째 아이콘(파일 모양) 클릭</li>
+        <li>좌측 Open folder</li>
+        <li>그냥 Enter</li>
+        <li>비밀번호 입력</li>
+        <li>'Yes'로 시작하는거 클릭</li>
+    
+    </ol>
+    <h2>비밀번호를 입력하고 싶지 않다면?</h2>
+    <ol>
+        <li>
+            아래 파란색 모두 복사(좀 김)
+        </li>
+        <pre style="color:blue">
+            {{Pk}}
+        </pre>
+        <li>원하는 폴더에 파일이름을 'smart.pem'으로 저장</li>
+        <li>'smart.pem'의 경로 복사 => <b>윈도우 : 파일 우클릭 > 속성 > 위치</b> 드래그 해서 복사 , 맥북 : <b>파일 우클릭 > 정보 가져오기 > 위치</b> 드래그 해서 복사</li>
+        <li>'.ssh/config'로 접속</li>
+        <li>위에 7번 과정을 아래 껄로 교체(경로는 3번 과정으로 얻은 경로)
+        </li>
+        <pre style="color:blue">
+            Host zeropointer
+                HostName server.zeropointer.co.kr 
+                User {{id}}
+                Port 2022
+                IdentityFile 경로/smart.pem
+        </pre>
+        <li>8번 과정과 똑같이 접속</li>
+
+    </ol>
 </body>
 </html>

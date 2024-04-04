@@ -33,7 +33,7 @@ def loadSite(request: Request, site: str) :
 @app.get("/api/index")
 def index(request : Request, password : str, id : str, pw : str) :
     if password == "zeropointerlab" :
-        패스워드 규칙 조회
+        # 패스워드 규칙 조회
         if len(pw) < 8 or id in pw :
             return RedirectResponse("/index.html")
 

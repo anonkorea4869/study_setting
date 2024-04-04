@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>정보</title>
+</head>
+<body>
+    <h1>환경 구현 설명</h1>
+    <ol>
+        <li>vscode 좌측 extension 클릭</li>
+        <li>ssh 검색</li>
+        <li>Remote - SSH 설치</li>
+        <li>윈도우 : , 맥북 : fn + 1</li>
+        <li>나오는 검색창에 'Remote-SSH: Open SSH Configuration File...' 클릭</li>
+        <li>''.ssh/config'로 끝나는거 클릭</li>
+        <li>아래 파란글씨 복붙 후 저장</li>
+        <pre style="color:blue">
+        Host zeropointer
+            HostName server.zeropointer.co.kr 
+            User {{id}}
+            Port 2022
+        </pre>
+        <li>4번 실행 후 'Remote-SSH: connect to Host' 클릭</li>
+        <li>zeropointer 클릭</li>
+        <li>기다리기</li>
+</body>
+</html>

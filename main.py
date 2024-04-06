@@ -49,3 +49,7 @@ def index(request : Request, password : str, id : str, pw : str) :
         return templates.TemplateResponse(f"/info.html", {"request": request, "id" : id, "pw" : pw, "Pk" : public_key})
     else :
         return RedirectResponse("/index.html")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port = 80)

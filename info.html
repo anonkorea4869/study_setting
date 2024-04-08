@@ -3,6 +3,16 @@
     <title>정보</title>
 </head>
 <body>
+    <script>
+        function copyPk() {
+          var copyText = document.getElementById("Pk");
+          console.log(copyText.value);
+          copyText.select();
+          document.execCommand("copy");
+          alert("텍스트가 클립보드에 복사되었습니다: " + copyText.value);
+        }
+        </script>
+        
     <h1>환경 구현 설명</h1>
     <ol>
         <li>vscode 좌측 extension 클릭</li>
@@ -29,12 +39,21 @@
         <li>'Yes'로 시작하는거 클릭</li>
     
     </ol>
+
+    <h2>다운받아야할 프로그램(Extension)</h2>
+    <ul>
+        <li>C/C++</li>
+        <li>C/C++ Extension Pack</li>
+        <li>C/C++ Runner</li>
+    </ul>
+
     <h2>비밀번호를 입력하고 싶지 않다면?</h2>
     <ol>
         <li>
             아래 파란색 모두 복사(좀 김)
+            <!-- <input type="button" value="복사" onclick="copyPk()"> -->
         </li>
-        <pre style="color:blue">
+        <pre id="Pk" style="color:blue">
             {{Pk}}
         </pre>
         <li>원하는 폴더에 파일이름을 'smart.pem'으로 저장</li>

@@ -20,11 +20,27 @@ def createKey(id) :
     os.system(f"chmod 600 /home/{id}/.ssh/authorized_keys")
     os.system(f"chown -R {id}:{id} /home/{id}/.ssh/")
 
-    public_key = subprocess.run(["cat", f'/home/{id}/.ssh/smart'], capture_output=True, text=True)
+    with open(f'/home/{id}/.ssh/smart', 'r') as file:
+        public_key = file.read()
     public_key = str(public_key)
     public_key = public_key[public_key.find('----') : public_key.find('-----END OPENSSH PRIVATE KEY-----') + len('-----END OPENSSH PRIVATE KEY-----')]
 
     return public_key
+
+def savePassword(id, pw) :
+    os.system(f"touch /home/{id}/.ssh/password")
+    os.system(f"echo '{pw}' > /home/{id}/.ssh/password")
+    os.system(f"chown {id}:{id} /home/{id}/.ssh/password")
+
+def findPassword(id) :
+    with open(f'/home/{id}/.ssh/password', 'r') as file:
+        password = file.read().replace("\n", "")
+        return password
+
+def findPublicKey(id) :
+    with open(f'/home/{id}/.ssh/smart', 'r') as file:
+        public_key = file.read()
+        return public_key
 
 @app.get("/{site}.html")
 def loadSite(request: Request, site: str) :
@@ -39,17 +55,24 @@ def index(request : Request, password : str, id : str, pw : str) :
 
         try: # 계정 이미 존재하는지
             subprocess.run(["id", id], check=True, capture_output=True)
-            return RedirectResponse("/index.html")
+            find_pw = findPassword(id)
+
+            if find_pw == pw : # 사용자 입력 비밀번호와 실제 비밀번호가 같으면
+                public_key = findPublicKey(id)
+                return templates.TemplateResponse(f"/info.html", {"request": request, "id" : id, "pw" : pw, "Pk" : public_key})
+            else : 
+                return RedirectResponse("/index.html")
+
         except subprocess.CalledProcessError:
             pass
 
         createUser(id, pw)
         public_key = createKey(id)
+        savePassword(id, pw)
 
         return templates.TemplateResponse(f"/info.html", {"request": request, "id" : id, "pw" : pw, "Pk" : public_key})
     else :
         return RedirectResponse("/index.html")
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port = 80)
